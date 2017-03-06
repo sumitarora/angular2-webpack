@@ -8,6 +8,7 @@ var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var LicenseWebpackPlugin = require('license-webpack-plugin');
 
 /**
  * Env
@@ -172,7 +173,9 @@ module.exports = function makeWebpackConfig() {
         /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
         root('./src') // location of your src
       ),
-
+      new LicenseWebpackPlugin({
+        pattern: /^(MIT|ISC|BSD.*)$/
+      }),
     // Tslint configuration for webpack 2
     new webpack.LoaderOptionsPlugin({
       options: {
